@@ -41,7 +41,7 @@ jobs:
 
       - name: Metadata
         id: metadata
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ inputs.image }}
           tags: |
