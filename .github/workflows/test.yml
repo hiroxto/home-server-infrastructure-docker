@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/epgstation/Dockerfile
+          file: ./src/epgstation/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
