@@ -1,0 +1,20 @@
+name: EPGStation Build and Push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/epgstation/*
+  workflow_dispatch:
+
+permissions:
+  packages: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-and-push.yml
+    with:
+      image: ghcr.io/hiroxto/home-srv-epgstation
+      context: ./src/epgstation
+      platforms: linux/amd64
