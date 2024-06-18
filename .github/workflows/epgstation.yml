@@ -1,4 +1,4 @@
-name: EPGStation Build and Push
+name: Build and push EPGStation
 
 on:
   push:
@@ -15,6 +15,6 @@ jobs:
   build:
     uses: ./.github/workflows/build-and-push.yml
     with:
-      image: ghcr.io/hiroxto/home-srv-epgstation
+      image: ghcr.io/hiroxto/epgstation
       context: ./src/epgstation
       platforms: linux/amd64
