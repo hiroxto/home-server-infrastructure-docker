@@ -22,7 +22,7 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and Push
+      - name: Build check
         uses: docker/build-push-action@v6
         with:
           context: ${{ inputs.context }}
