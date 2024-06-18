@@ -1,4 +1,4 @@
-name: EPGStation Build and Push
+name: Build and push EPGStation
 
 on:
   push:
