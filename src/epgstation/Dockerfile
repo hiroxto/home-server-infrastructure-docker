@@ -1,4 +1,4 @@
-FROM l3tnun/epgstation:v2.8.0-debian
+FROM l3tnun/epgstation:v2.9.1-debian
 
 ENV DEBIAN_FRONTEND=noninteractive
 
