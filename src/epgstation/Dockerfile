@@ -4,10 +4,9 @@ FROM l3tnun/epgstation:v2.10.0-debian
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# renovate: datasource=github-tags depName=FFmpeg/FFmpeg
+ARG FFMPEG_VERSION="n7.0"
 ARG DEPENDENCIES="make gcc git g++ automake curl wget autoconf build-essential libass-dev libfreetype6-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev"
-
-# NOTE: 自動更新したい
-ENV FFMPEG_VERSION=7.0
 
 RUN <<EOF
     set -eux
@@ -18,9 +17,9 @@ RUN <<EOF
     apt-get -y install libx265-dev libnuma-dev
     apt-get -y install libasound2 libass9 libvdpau1 libva-x11-2 libva-drm2 libxcb-shm0 libxcb-xfixes0 libxcb-shape0 libvorbisenc2 libtheora0 libaribb24-dev
     #ffmpeg build
-    mkdir /tmp/ffmpeg_sources
-    cd /tmp/ffmpeg_sources
-    curl -fsSL http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2 | tar -xj --strip-components=1
+    mkdir /tmp/ffmpeg_source
+    git clone --branch=${FFMPEG_VERSION} --depth=1 --recursive https://github.com/FFmpeg/FFmpeg /tmp/ffmpeg_source
+    cd /tmp/ffmpeg_source
     ./configure \
         --prefix=/usr/local \
         --disable-shared \
