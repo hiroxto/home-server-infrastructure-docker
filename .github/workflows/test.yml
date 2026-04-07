@@ -16,6 +16,8 @@ jobs:
           filters: |
             epgstation:
               - src/epgstation/**
+            mirakurun:
+              - src/mirakurun/**
 
   epgstation:
     needs:
@@ -24,3 +26,11 @@ jobs:
     uses: ./.github/workflows/build-check.yml
     with:
       context: ./src/epgstation
+
+  mirakurun:
+    needs:
+      - changes
+    if: needs.changes.outputs.mirakurun == 'true'
+    uses: ./.github/workflows/build-check.yml
+    with:
+      context: ./src/mirakurun
