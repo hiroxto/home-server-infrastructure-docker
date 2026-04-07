@@ -2,7 +2,7 @@
 
 FROM chinachu/mirakurun:3.8.0
 
-ARG DEPENDENCIES="build-essential libtool autoconf git automake cmake"
+ARG DEPENDENCIES="git build-essential libtool autoconf git automake cmake"
 RUN <<EOF
     set -eux
     apt-get update && apt-get install -y ${DEPENDENCIES}
