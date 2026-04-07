@@ -2,14 +2,14 @@
 
 FROM chinachu/mirakurun:3.8.0
 
-ARG DEPENDENCIES="git build-essential libtool autoconf git automake cmake pkg-config"
+ARG DEPENDENCIES="git build-essential libtool autoconf automake cmake"
 RUN <<EOF
     set -eux
     sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list
     sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list
     sed -i '/buster-updates/d' /etc/apt/sources.list
     apt-get update
-    apt-get install -y ${DEPENDENCIES}
+    apt-get install -y ${DEPENDENCIES} pkg-config libpcsclite-dev
     # Install recpt1
     git clone https://github.com/stz2012/recpt1 /tmp/recpt1
     cd /tmp/recpt1/recpt1
@@ -17,8 +17,9 @@ RUN <<EOF
     ./configure
     make
     make install
-    rm -rf /tmp/recpt1
     # Cleanup
+    ldconfig
+    rm -rf /tmp/recpt1
     apt-get -y remove ${DEPENDENCIES}
     apt-get autoremove -y
     apt-get clean
