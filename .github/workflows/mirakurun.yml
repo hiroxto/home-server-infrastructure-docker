@@ -1,4 +1,4 @@
-name: Build and push EPGStation
+name: Build and push Mirakurun
 
 on:
   push:

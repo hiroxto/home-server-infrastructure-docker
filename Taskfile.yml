@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  default:
+    deps:
+      - help
+
+  help:
+    desc: ヘルプを表示する
+    cmd: task --list --sort none
+
+  build:
+    desc: 全てのDockerイメージをビルドする
+    deps:
+      - build:epgstation
+      - build:mirakurun
+
+  build:epgstation:
+    desc: EPGStationのDockerイメージをビルドする
+    cmds:
+      - docker build -t ghcr.io/hiroxto/epgstation src/epgstation
+
+  build:mirakurun:
+    desc: MirakurunのDockerイメージをビルドする
+    cmds:
+      - docker build -t ghcr.io/hiroxto/mirakurun src/mirakurun
