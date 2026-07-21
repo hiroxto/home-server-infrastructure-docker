@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM chinachu/mirakurun:3.8.0
+FROM chinachu/mirakurun:4.1.3
 
 ARG DEPENDENCIES="git build-essential libtool autoconf automake cmake"
 RUN <<EOF
