@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+# check=error=true
 
 FROM l3tnun/epgstation:v2.10.0-debian
 
