@@ -35,3 +35,40 @@ jobs:
     uses: ./.github/workflows/build-check.yml
     with:
       context: ./src/mirakurun
+
+  build-results:
+    needs:
+      - changes
+      - epgstation
+      - mirakurun
+    if: always()
+    runs-on: ubuntu-slim
+    steps:
+      - name: Check build results
+        env:
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          EPGSTATION_CHANGED: ${{ needs.changes.outputs.epgstation }}
+          EPGSTATION_RESULT: ${{ needs.epgstation.result }}
+          MIRAKURUN_CHANGED: ${{ needs.changes.outputs.mirakurun }}
+          MIRAKURUN_RESULT: ${{ needs.mirakurun.result }}
+        run: |
+          if [ "$CHANGES_RESULT" != 'success' ]; then
+            echo "::error::Change detection did not succeed: $CHANGES_RESULT"
+            exit 1
+          fi
+
+          case "$EPGSTATION_CHANGED:$EPGSTATION_RESULT" in
+            true:success|false:skipped) ;;
+            *)
+              echo "::error::EPGStation: changed=$EPGSTATION_CHANGED, result=$EPGSTATION_RESULT"
+              exit 1
+              ;;
+          esac
+
+          case "$MIRAKURUN_CHANGED:$MIRAKURUN_RESULT" in
+            true:success|false:skipped) ;;
+            *)
+              echo "::error::Mirakurun: changed=$MIRAKURUN_CHANGED, result=$MIRAKURUN_RESULT"
+              exit 1
+              ;;
+          esac
