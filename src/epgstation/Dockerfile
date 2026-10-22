@@ -6,7 +6,7 @@ FROM l3tnun/epgstation:v2.10.0-debian
 ENV DEBIAN_FRONTEND=noninteractive
 
 # renovate: datasource=github-tags depName=FFmpeg/FFmpeg versioning=regex:^n(?<major>\d+)\.(?<minor>\d+)(?:\.(?<patch>\d+))?$
-ARG FFMPEG_VERSION="n7.1.5"
+ARG FFMPEG_VERSION="n9.0.2"
 ARG DEPENDENCIES="make gcc git g++ automake curl wget autoconf build-essential libass-dev libfreetype6-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev"
 
 RUN <<EOF
