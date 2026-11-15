@@ -1,0 +1,19 @@
+[tasks.default]
+hide = true
+depends = ["help"]
+
+[tasks.help]
+description = "ヘルプを表示する"
+run = "mise tasks"
+
+[tasks.build]
+description = "全てのDockerイメージをビルドする"
+depends = ["build:epgstation", "build:mirakurun"]
+
+[tasks."build:epgstation"]
+description = "EPGStationのDockerイメージをビルドする"
+run = "docker build -t ghcr.io/hiroxto/epgstation src/epgstation"
+
+[tasks."build:mirakurun"]
+description = "MirakurunのDockerイメージをビルドする"
+run = "docker build -t ghcr.io/hiroxto/mirakurun src/mirakurun"
