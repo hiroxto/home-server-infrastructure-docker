@@ -1,11 +1,3 @@
-[tasks.default]
-hide = true
-depends = ["help"]
-
-[tasks.help]
-description = "ヘルプを表示する"
-run = "mise tasks"
-
 [tasks.build]
 description = "全てのDockerイメージをビルドする"
 depends = ["build:epgstation", "build:mirakurun"]
