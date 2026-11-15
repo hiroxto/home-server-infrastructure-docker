@@ -15,19 +15,19 @@
 
 ## ビルド・検証コマンド
 
-ローカル作業には Docker と [Task](https://taskfile.dev/) が必要となる。
+ローカル作業には Docker と [mise](https://mise.jdx.dev/) が必要となる。
 
-- `task` または `task help`: 利用可能なタスクを一覧表示する。
-- `task build`: すべての Docker イメージをビルドする。
-- `task build:epgstation`: EPGStation イメージのみビルドする。
-- `task build:mirakurun`: Mirakurun イメージのみビルドする。
+- `mise run` または `mise run help`: 利用可能なタスクを一覧表示する。
+- `mise run build`: すべての Docker イメージをビルドする。
+- `mise run build:epgstation`: EPGStation イメージのみビルドする。
+- `mise run build:mirakurun`: Mirakurun イメージのみビルドする。
 
 プルリクエストでは `.github/workflows/test.yml` が変更されたイメージのみビルドする。`main` への push では対象イメージを GHCR に公開する。
 
 ## テスト方針
 
 GitHub Actions の CI で変更したイメージが正常にビルドできることを必須の検証とする。
-プルリクエスト作成前に、対応する `task build:<image>` を実行する。
+プルリクエスト作成前に、対応する `mise run build:<image>` を実行する。
 共通ワークフローを変更した場合は、パスフィルターにより CI が実行されない可能性があるため、両イメージへの影響を確認する。実行したコマンドと確認結果は PR の「動作確認」に記載する。
 
 ## コミットとプルリクエスト
