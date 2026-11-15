@@ -17,7 +17,7 @@
 
 ローカル作業には Docker と [mise](https://mise.jdx.dev/) が必要となる。
 
-- `mise run` または `mise run help`: 利用可能なタスクを一覧表示する。
+- `mise tasks`: 利用可能なタスクを一覧表示する。
 - `mise run build`: すべての Docker イメージをビルドする。
 - `mise run build:epgstation`: EPGStation イメージのみビルドする。
 - `mise run build:mirakurun`: Mirakurun イメージのみビルドする。
